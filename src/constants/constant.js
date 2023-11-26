@@ -23,6 +23,21 @@ export const courtNumbers = [
     "Court 10",
 ]
 
+export const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+]
+
 export const icons = [{
     key: 1,
     name: "Shuttlecock",
@@ -39,3 +54,13 @@ export const icons = [{
     img: volleyball,
     background: volley
 }];
+
+export const userNavLinks = [{
+    key: 1,
+    icon: 'AccountCircleIcon',
+    name: 'Profile'
+},{
+    key: 2,
+    icon: 'CalendarMonthIcon',
+    name: 'Upcoming Activities'
+}]

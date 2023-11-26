@@ -4,6 +4,7 @@ import TestCard from '../componentss/TestCard'
 import { datas } from '../constants/hardcode'
 import { icons } from '../constants/constant'
 import { Grid } from '@mui/material'
+import UserActivities from '../componentss/UserActivities'
 
 const Test = () => {
   return (
@@ -21,6 +22,9 @@ const Test = () => {
                   <TestCard datas={data} icons={icons}/>
                 </Grid>
             ))}
+        </Grid>
+        <Grid mt={8 } ml={10}>
+          <UserActivities />
         </Grid>
     </>
   )

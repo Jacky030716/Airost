@@ -6,6 +6,8 @@ import racquet from './badminton_racket.jpg'
 import pingpongplayer from './pingpong.jpg'
 import volley from './volley.jpg'
 import logo from './milo_dinosaur_logo1.png'
+import profile from './profile.jpg'
+import ping_pong from './ping_pong_1.jpg'
 
 export {
     pingpong,
@@ -15,5 +17,7 @@ export {
     racquet,
     pingpongplayer,
     volley,
-    logo
+    logo,
+    profile,
+    ping_pong
 }

@@ -15,8 +15,18 @@ import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import { logo } from '../assets'
 
-const pages = ['Introduction', 'About', 'Book', 'Contact'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Introduction', 'About', 'Booking', 'Contact'];
+const hello = ['Profile', 'Logout'];
+
+const settings = [{
+  key: 'profile',
+  name: 'Profile',
+  path: '/user',
+},{
+  key: 'logout',
+  name: 'Logout',
+  path: '/',
+}]
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -92,8 +102,10 @@ function ResponsiveAppBar() {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, mx: 1, color: 'black', display: 'block', '&:hover': { backgroundColor: 'lightblue' }}}
-              >
-                {page}
+              > 
+              <Link to={`/${page.toLowerCase()}`}>
+                  {page}
+              </Link>
               </Button>
             ))}
           </Box>
@@ -121,8 +133,8 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.key} onClick={handleCloseUserMenu}>
+                  <Link to={setting.path} textAlign="center">{setting.name}</Link>
                 </MenuItem>
               ))}
             </Menu>

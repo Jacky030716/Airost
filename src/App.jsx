@@ -2,6 +2,7 @@ import React from 'react'
 import Login from './components/Login'
 import Register from './components/Register'
 import ForgotPassword from './components/ForgotPassword'
+import UserProfile from './components/UserProfile'
 import Booking from './components/Booking'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Test from './components/Test'
@@ -15,7 +16,8 @@ const App = () => {
         <Route path='/register' element={<Register />}/>
         <Route path='/forgotpassword' element={<ForgotPassword />}/>
         <Route path='/booking' element={<Booking />}/>
-        <Route path='/test' element={<Test />}></Route>
+        <Route path='/test' element={<Test />} />
+        <Route path='/user' element={<UserProfile />} />
       </Routes>
     </Router>
   )
