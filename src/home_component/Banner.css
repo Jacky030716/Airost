@@ -1,0 +1,51 @@
+.slider {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: right;
+  }
+  
+  .image {
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+  }
+  
+  .right-arrow {
+    position: absolute;
+    top: 32%;
+    right: 0px;
+    font-size: 3rem;
+    color: #c5c5b6;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .left-arrow {
+    position: absolute;
+    top: 32%;
+    left: 0px;
+    font-size: 3rem;
+    color: #c5c5b6;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .right-arrow:hover,
+    .left-arrow:hover {
+  font-size: 3.5rem; /* Increase the font size on hover */
+    }
+  
+  .slide {
+    opacity: 0;
+    transform: translateX(100%); /* Initial position outside the viewport */
+    transition: opacity 1s ease, transform 1s ease; /* Use transition for smooth effect */
+  }
+  
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0); /* Move to the center of the viewport */
+  }
