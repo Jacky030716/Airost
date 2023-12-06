@@ -123,12 +123,10 @@ function ResponsiveAppBar() {
                       borderRadius: '5px',
                     }}
                     onMouseOver={(e) => {
-                      console.log('Mouse over');
                       e.target.style.backgroundColor = 'lightblue';
                       e.target.style.boxShadow = '0 0 10px #f0f0f0';
                     }}
                     onMouseOut={(e) => {
-                      console.log('Mouse out');
                       e.target.style.backgroundColor = 'transparent';
                       e.target.style.boxShadow = 'none';
                     }}
@@ -147,12 +145,10 @@ function ResponsiveAppBar() {
                       borderRadius: '5px',
                     }}
                     onMouseOver={(e) => {
-                      console.log('Mouse over');
                       e.target.style.backgroundColor = 'lightblue';
                       e.target.style.boxShadow = '0 0 10px #f0f0f0';
                     }}
                     onMouseOut={(e) => {
-                      console.log('Mouse out');
                       e.target.style.backgroundColor = 'transparent';
                       e.target.style.boxShadow = 'none';
                     }}

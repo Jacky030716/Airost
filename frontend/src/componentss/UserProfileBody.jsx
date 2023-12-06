@@ -25,7 +25,7 @@ const UserProfileBody = ({datas}) => {
                         animation: `${fadeIn} 1s ease-in-out`
                     }}
                 >
-                    <Avatar src={profile} sx={{ width: "50%", height: "50%", mt: 6 }} />
+                    <Avatar src={profile} sx={{ width: "50%", height: "58%", mt: 6 }} />
                     <Typography variant="h5" mt={2}>
                     {datas?.UTMID}
                     </Typography>

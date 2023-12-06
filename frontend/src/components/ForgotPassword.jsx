@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, Container, CssBaseline, FormHelperText, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Container, CssBaseline, FormHelperText, Grid, Snackbar, TextField, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
 
@@ -14,6 +14,8 @@ const ForgotPassword = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [confirmErrorMessage, setconfirmErrorMessage] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [successSnackbar, setSuccessSnackbar] = useState(false);
+    const [failSnackbar, setFailSnackbar] = useState(false);
     
     useEffect(() => {
       setNum1(Math.floor(Math.random() * 10));
@@ -51,9 +53,11 @@ const ForgotPassword = () => {
         axios.put(`http://localhost:8081/resetpassword/${utmId}`, { newPassword })
           .then((res) => {
             console.log(res);
+            setSuccessSnackbar(true);
           })
           .catch((err) => {
             console.error(err);
+            setFailSnackbar(true);
           });
       };
 
@@ -99,6 +103,8 @@ const ForgotPassword = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                backgroundColor: "rgba(235, 235, 235, 0.8)",
+                borderRadius: "10px",
                 }}
                 style={{ boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px', 
                          padding: '40px'}}
@@ -175,6 +181,28 @@ const ForgotPassword = () => {
                     </Grid>
                 </Box>
             </Box>
+            <Snackbar 
+              open={successSnackbar} 
+              autoHideDuration={3000} 
+              onClose={() => setSuccessSnackbar(false)}
+              anchorOrigin={{ vertical: 'middle', horizontal: 'center' }}
+              style={{ minWidth: '30%', minHeight: '20%' }}
+            >
+              <Alert onClose={() => setSuccessSnackbar(false)} severity="success" sx={{ width: '100%' }}>
+                Changed Successfully!
+              </Alert>
+            </Snackbar>
+            <Snackbar 
+              open={failSnackbar} 
+              autoHideDuration={3000} 
+              onClose={() => setFailSnackbar(false)}
+              anchorOrigin={{ vertical: 'middle', horizontal: 'center' }}
+              style={{ minWidth: '30%', minHeight: '20%' }}
+            >
+              <Alert onClose={() => setFailSnackbar(false)} severity="error" sx={{ width: '100%' }}>
+                Something went wrong!
+              </Alert>
+            </Snackbar>
         </Container>
     </Grid>
   );

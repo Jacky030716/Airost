@@ -17,7 +17,7 @@ const Home = () => {
     }, []);
 
     const fetchBookings = () => {
-        axios.get('http://localhost:8081/avaliableJoin')
+        axios.get( `http://localhost:8081/avaliableJoin?utmId=${localStorage.getItem('utmId')}`)
         .then(res => {
             setBookings(res.data);
             const formattedBookings = res.data.map(booking => ({
@@ -31,17 +31,23 @@ const Home = () => {
         });
     };
 
+
     const handleJoin = (bookingID) => {
-        axios.post(`http://localhost:8081/joinBooking/${bookingID}`)
-        .then(res => {
+        const curUtmId = localStorage.getItem('utmId');
+        const booking = bookings.find(booking => booking.bookingID === bookingID);
+        const combinedUtmId = booking ? booking.UTMID + ',' + curUtmId : curUtmId;
+        
+        axios.post(`http://localhost:8081/joinBooking/${bookingID}`, { combinedUtmId })
+          .then(res => {
             console.log('Booking joined:', res.data);
             // Refresh the bookings after a successful join
             fetchBookings();
-        })
-        .catch(err => {
+          })
+          .catch(err => {
             console.error('Error joining booking:', err);
-        });
-    };
+          });
+      };
+      
 
     // Function to format date to "dd-mm-yyyy"
     const formatDate = (dateString) => {

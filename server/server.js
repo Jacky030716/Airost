@@ -26,6 +26,7 @@ app.post('/login', (req,res) => {
 })
 
 app.get('/avaliableJoin', (req, res) => {
+  const { utmId } = req.query;
   const bookingsQuery = 'SELECT * FROM booking';
   const sportVenueQuery = 'SELECT * FROM sportVenue';
   const sportQuery = 'SELECT * FROM sport';
@@ -58,8 +59,9 @@ app.get('/avaliableJoin', (req, res) => {
           return (
             sport &&
             booking.fulledCapacity !== sport.capacity &&
-            new Date(booking.date) >= new Date(currentDate) // Filter by date: today or after today
-          );
+            new Date(booking.date) >= new Date(currentDate) &&// Filter by date: today or after today
+            booking.UTMID.includes(utmId) === false// Filter by UTMID: not joined
+            );
         }).map(booking => {
           const sport = sports.find(s => s.sportID === booking.tempSportID);
           return {
@@ -77,10 +79,11 @@ app.get('/avaliableJoin', (req, res) => {
 
 app.post('/joinBooking/:bookingID', (req, res) => {
   const { bookingID } = req.params;
+  const { combinedUtmId } = req.body;
 
-  const updateQuery = 'UPDATE booking SET fulledCapacity = fulledCapacity + 1 WHERE bookingID = ?';
+  const updateQuery = 'UPDATE booking SET fulledCapacity = fulledCapacity + 1, UTMID = ? WHERE bookingID = ?';
 
-  db.query(updateQuery, [bookingID], (err, result) => {
+  db.query(updateQuery, [combinedUtmId, bookingID], (err, result) => {
     if (err) {
       return res.status(500).json({ error: 'Error joining booking' });
     }
@@ -165,7 +168,7 @@ app.get('/bookingHistory', (req, res) => {
     FROM booking 
     JOIN sportVenue ON booking.sportVenueID = sportVenue.sportVenueID
     JOIN sport ON sportVenue.sportID = sport.sportID
-    WHERE booking.UTMID = ? 
+    WHERE FIND_IN_SET(?, UTMID) > 0
     AND ((booking.date = ? AND CAST(SUBSTRING_INDEX(booking.timeSlot, ' - ', 1) AS TIME) >= CAST(? AS TIME)) OR booking.date > ?)
     ORDER BY booking.date DESC`;
 
