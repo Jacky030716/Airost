@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Grid, Button, Typography, Stack, Divider, Tabs, Tab } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { userNavLinks } from "../constants/constant";
 import UserProfileBody from "./UserProfileBody"
 import { cardComponents } from "../constants/constant";
@@ -17,6 +18,7 @@ const UserCard = () => {
     const [value, setValue] = useState(0);
     const [studentData, setStudentData] = useState(null);
     const [bookings, setBookings] = useState([]);
+    const Navigate = useNavigate();
 
     const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -33,6 +35,12 @@ const UserCard = () => {
           console.error(err);
         });
     }, []);
+
+    useEffect(() => {
+      if(localStorage.getItem('utmId') == null)
+        Navigate('/login');
+    }
+    , []);
   
     const fetchBookings = (utmId) => {
       // Get current date
