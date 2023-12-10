@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function ActivityCard({activity}) {
+export default function ActivityCard({activity, onClick}) {
   return (
     <Card sx={{ maxWidth: 345, maxHeight: 400, borderRadius: "10px  " }}>
       <CardMedia
@@ -14,7 +14,7 @@ export default function ActivityCard({activity}) {
         alt={activity.name}
         sx={{height: 200, objectFit: "cover", objectPosition: "center"  }}
         image={activity.src}
-/>
+      />
       <CardContent sx={{ height: 140}}>
         <Typography gutterBottom variant="h5" component="div">
           {activity.name}
@@ -24,7 +24,7 @@ export default function ActivityCard({activity}) {
         </Typography>
       </CardContent>
       <CardActions sx={{ height: 60}}>
-        <Button size="small" sx={{ml: 0.5}}>Learn More</Button>
+        <Button size="small" sx={{ml: 0.5}} onClick={onClick}>Learn More</Button>
       </CardActions>
     </Card>
   );

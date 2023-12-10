@@ -170,7 +170,7 @@ app.get('/bookingHistory', (req, res) => {
     JOIN sport ON sportVenue.sportID = sport.sportID
     WHERE FIND_IN_SET(?, UTMID) > 0
     AND ((booking.date = ? AND CAST(SUBSTRING_INDEX(booking.timeSlot, ' - ', 1) AS TIME) >= CAST(? AS TIME)) OR booking.date > ?)
-    ORDER BY booking.date DESC`;
+    ORDER BY booking.date ASC`;
 
   db.query(sql, [utmId, currentDate, currentTime, currentDate], (err, data) => {
     if (err) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
+import Reveal from '../componentss/Reveal';
 import JoinCard from '../componentss/JoinCard'
 import Banner from '../componentss/Banner';
 import Activities from '../componentss/Activities';
@@ -59,44 +60,50 @@ const Home = () => {
     };
 
     return (
-        <>
+        <>  
             <Grid
                 container
                 direction="column"
                 alignItems="stretch"
                 style={{ minHeight: '100vh' }}
-            >
+            >  
                 <Grid item position="sticky" sx={{top: 0, zIndex: 1000}}>
                     <Navbar />
                 </Grid>
                 <Grid container width="100" display="flex" flexDirection="column" justifyContent="center">
                     {/* Introduction + Banner */}
                     <Grid item display="flex" alignItems="center" justifyContent="center" mt={10} id="introduction">
-                        <Grid width="35%" p={2}>
-                            <Introduction />
-                        </Grid>
+                            <Grid width="35%" p={2}>
+                                <Reveal>
+                                    <Introduction />
+                                </Reveal>
+                            </Grid>
                         <Grid>
                             <Banner />
                         </Grid>
                     </Grid>
 
                     {/* Activities */}
-                    <Grid item id="activities" mt={8} ml={12}>
-                        <Activities />
-                    </Grid>
+                    <Reveal>
+                        <Grid item id="activities" mt={10} ml={12}>
+                            <Activities />
+                        </Grid>
+                    </Reveal>
 
                     {/* Join Activities */}
-                    <Grid item id="join" mt={8} ml={12} width="88%">
-                        <Typography variant='h4' mb={1} color="white">
+                    <Grid item id="join" mt={10} ml={12} width="88%">
+                        <Typography variant='h4' mb={1} color="white" fontFamily="Poppins" fontWeight="600">
                             Join Activities
                         </Typography>
-                        <Grid container display="flex" style={{alignItems: {xs: "center", sm: "none"},justifyContent: {xs: "center",sm: "none"}}}>
+                        <Reveal>
+                        <Grid ml={1.25} mt={2} container display="flex" style={{alignItems: {xs: "center", sm: "none"},justifyContent: {xs: "center",sm: "none"}}}>
                             {bookings.map(booking => (
                                 <Grid key={booking.bookingID} item xs={12} sm={6} md={4} lg={3} mb={3}>
                                     <JoinCard booking={booking} handleJoin={handleJoin}/>
                                 </Grid>
                             ))}
                         </Grid>
+                        </Reveal>
                     </Grid>
 
                     {/* Footer */}

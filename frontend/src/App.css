@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@500;600&family=Oswald:wght@400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto:ital,wght@0,100;0,300;0,500;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900');
 
+* {
+    font-family: 'Poppins', sans-serif;
+}
 
 body {
-    font-family: 'Oswald', sans-serif;
-    background: linear-gradient(to right, #606c88, #3f4c6b);
+    background: linear-gradient(to right, #24243e, #141E30, #0f0c29)
 }

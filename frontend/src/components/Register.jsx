@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import fadeIn from '../style/animation.css'
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import Avatar from '@mui/material/Avatar';
@@ -50,6 +51,11 @@ function Copyright(props) {
     })
 
     const navigate = useNavigate();
+    const registerItemRef = useRef(null);
+
+    useEffect(() => {
+      registerItemRef.current.style.animation = 'fadeIn 1s forwards';
+    }, []);
 
     const [errorMessage, setErrorMessage] = useState('');
     const [confirmErrorMessage, setconfirmErrorMessage] = useState('');
@@ -130,6 +136,7 @@ function Copyright(props) {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
+          ref={registerItemRef}
           sx={{
             marginTop: 8,
             display: 'flex',

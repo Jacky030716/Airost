@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import fadeIn from '../style/animation.css'
 import { Link } from 'react-router-dom';
 import { Alert, Box, Button, Container, CssBaseline, FormHelperText, Grid, Snackbar, TextField, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -16,8 +17,12 @@ const ForgotPassword = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [successSnackbar, setSuccessSnackbar] = useState(false);
     const [failSnackbar, setFailSnackbar] = useState(false);
+
+    const forgotItemRef = useRef(null);
     
     useEffect(() => {
+      forgotItemRef.current.style.animation = 'fadeIn 1s forwards';
+
       setNum1(Math.floor(Math.random() * 10));
       setNum2(Math.floor(Math.random() * 10));
       const operations = ['+', '-'];
@@ -98,6 +103,7 @@ const ForgotPassword = () => {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
+                ref={forgotItemRef}
                 sx={{
                 marginTop: 8,
                 display: 'flex',
